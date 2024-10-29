@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnItout | Dynamic Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <style>
+        /* CSS styles directly applied */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        #notify-section {
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #notify-section h2 {
+            margin-bottom: 10px;
+        }
+        #notify-section form {
+            display: inline-block;
+        }
+        #notify-section input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        #notify-section button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader for suspense effect -->
+    <div id="loader">
+        <div class="flower-loader">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+        </div>
+        <p>Bringing you the best learning adventure...</p>
+    </div>
+
+    <!-- Main content -->
+    <div class="container" id="mainContent">
+        <header class="header-container" id="header">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LearnItout Logo" class="logo-header">
+                <span class="app-name">LearnItout</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#notify-section">Notify me!!</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="hero">
+            <h1 class="welcome-message">Welcome to <span class="highlight">LearnItout</span></h1>
+            <p class="welcome-message">Your fun and interactive way to learn.</p>
+            <button class="cta-btn">Get Started</button>
+        </section>
+
+        <section id="specialSection">
+            <h2>What Makes Us Special?</h2>
+            <!-- Content goes here -->
+        </section>
+        
+        <section id="features">
+            <div class="grid-container">
+                <div class="grid-item" data-animate="fade-in">
+                    <h3>Interactive Lessons</h3>
+                    <p>Experience learning like never before.</p>
+                </div>
+                <div class="grid-item" data-animate="fade-in">
+                    <h3>Gamified Learning</h3>
+                    <p>Engage with fun quizzes and challenges.</p>
+                </div>
+                <div class="grid-item" data-animate="fade-in">
+                    <h3>Progress Tracking</h3>
+                    <p>See your growth and achievements instantly.</p>
+                </div>
+                <div class="grid-item" data-animate="fade-in">
+                    <h3>Custom Learning Paths</h3>
+                    <p>Personalized learning plans tailored to you.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="notify-section">
+            <h2>Be the first to know when we launch!</h2>
+            <form action="{{ url_for('notify') }}" method="POST">
+                <label for="email">Enter your email to get notified:</label>
+                <input type="email" id="email" name="email" required placeholder="Your email">
+                <button type="submit">Notify Me</button>
+            </form>
+        </section>
+
+        <footer id="contact">
+            <p>Contact us at: <a href="mailto:support@learnitout.com">support@learnitout.com</a></p>
+            <p>&copy; 2024 LearnItout. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <div id="logoContainer" style="display: none;">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="LearnItout Logo" class="logo-launch">
+    </div>
+
+</body>
+</html>
