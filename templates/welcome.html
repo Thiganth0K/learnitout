@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearniTOut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        /* Loading Screen Styling */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(90deg, #ff3131, #ff914d);
+            z-index: 2;
+            animation: slideOutLeft 2s ease forwards 3s; /* Slide left animation with delay */
+        }
+
+        /* Slide Out Animation */
+        @keyframes slideOutLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Logo Pulse Animation */
+        .pulse-logo {
+            width: 200px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Keyframes for Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+
+        /* Main Content Styling */
+        #main-content {
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('{{ url_for('static', filename='images/welcome_pic_2.jpg') }}');
+            background-size: cover; /* Ensure it covers the entire screen */
+            background-position: center;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            padding: 80px;
+            text-align: left;
+            color: black;
+            
+            animation-delay: 1s;
+            z-index: 1;
+        }
+
+        /* Fade In Animation for Main Content */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Headings and Text Styling */
+        h1 {
+            font-size: 84px;
+            font-weight: bold;
+            color: black;
+            margin: 0 0 20px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 200px;
+            left: 150px;
+            
+        }
+
+        p {
+            font-size: 56px;
+            color: black;
+            margin: 0;
+            text-align: left;
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 325px;
+            left: 150px;
+        }
+
+        /* Button Styling */
+        button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            position: absolute;
+            left: 250px;
+            top: 400px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background-color: #ff3131;
+            transform: scale(1.05);
+        }
+
+        /* Button Active State */
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen Container -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo_1.png') }}" alt="Graduation Cap Logo" class="pulse-logo">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <h1>LearniTOut</h1>
+        <p>Interactive way of Learning!!</p>
+        <button type="submit" id="get_started_btn">Get Started</button>
+    </div>
+
+    <script>
+        // Script to control the transition between loading screen and main content
+        window.addEventListener("load", function() {
+            // Set a timeout to delay showing the main content after the loading screen animation
+            setTimeout(() => {
+                // Hide the loading screen after the slide-out animation completes
+                const loadingScreen = document.getElementById("loading-screen");
+                const mainContent = document.getElementById("main-content");
+                mainContent.style.display = "block";
+                loadingScreen.style.display = "none";
+
+                // Show the main content
+                
+            }, 5000);  // Total delay including animation (5 seconds)
+
+            // Add click event for "Get Started" button
+            const get_started_btn = document.getElementById('get_started_btn');
+            get_started_btn.addEventListener('click', function() {
+                window.location.href = '/about_us';
+            });
+        });
+    </script>
+</body>
+</html>

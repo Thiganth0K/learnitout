@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LearnItout: Engage in interactive learning experiences, explore topics, and connect with a community of learners.">
+    <meta name="keywords" content="Learning, Online Education, Gamified Learning, Interactive Lessons, Expert Instructors">
+    <title>About Us - LearnItout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_1.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script_1.js') }}"></script>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="flower-loader">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+        </div>
+        <h2>Loading...</h2>
+    </div>
+
+    <div id="mainContent" style="opacity: 0;">
+        <header class="header-container">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/logo_1.png') }}" alt="LearnItout Logo" class="logo-header">
+                <h1 class="app-name">LearnItout</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#contact-section">Contact</a></li>
+                    <li><a href="#about-section">About Us</a></li>
+                    <li><a href="#special-container">What's Special</a></li>
+                    <li><a href="#notify-section">Notify me!</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+
+        <section class="about-section" id="about-section">
+            <div class="about-content">
+                <img src="{{ url_for('static', filename='images/about_us_pic_1-removebg-preview.png') }}" alt="About Us Image" class="about-image">
+                <div class="text-content">
+                    <h1>About Us</h1>
+                    <p>At Platfware, innovation isn’t just a goal—it’s our way of life. As a leading IT powerhouse, we specialize in crafting game-changing solutions across industries. From creative content strategies to impactful marketing campaigns and seamless CRM management, we help businesses thrive in today’s fast-paced world.</p>
+                    <p>Our vibrant HR department fosters a culture where talent flourishes, fueling collaboration and growth. Driving our journey forward is Learn It Out—an all-in-one educational platform offering personalized tutoring, real-time doubt-solving, and certification courses for students from grades 9 to 12. With a passion for excellence and a future-focused approach, Platfware transforms ideas into results, delivering solutions that leave a lasting impact.</p>
+                </div>
+                <div class="circle_1"></div>
+                <div class="circle_2"></div>
+                <div class="circle_3"></div>
+                <div class="rect"></div>
+            </div>
+        </section>
+
+        <section id="special-container">
+            <div class="special-container">
+                <div class="rectangle"></div>
+                <div class="circle_4"></div>
+                <div class="circle_5"></div>
+                <div class="circle_6"></div>
+                <div class="circle_7"></div>
+                <div class="circle_8"></div>
+                <h2>What's Special ?</h2>
+                <div class="special-item">
+                    <div class="circle-badge">01</div>
+                    <img src="{{ url_for('static', filename='images/feature_1.png') }}" alt="Convenient Tutoring Icon">
+                    <p>Convenient Tutoring</p>
+                </div>
+                <div class="special-item">
+                    <div class="circle-badge">02</div>
+                    <img src="{{ url_for('static', filename='images/feature_2.png') }}" alt="Interactive Mentorship Icon">
+                    <p>Interactive Mentorship</p>
+                </div>
+                <div class="special-item">
+                    <div class="circle-badge">03</div>
+                    <img src="{{ url_for('static', filename='images/feature_3.png') }}" alt="Educational Support Icon">
+                    <p>Educational Support</p>
+                </div>
+                <div class="special-item">
+                    <div class="circle-badge">04</div>
+                    <img src="{{ url_for('static', filename='images/feature_4.png') }}" alt="Open Source Icon">
+                    <p>Open Source</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="notify-section">
+            <div class="notify-container">
+                <div class="circle_notify_1"></div>
+                <div class="circle_notify_2"></div>
+                <h2>Be the First to Know!</h2>
+                <p>Be the First to Experience the Future of Learning!  
+                    Exciting things are on the horizon! Get ready for new features and updates designed to elevate your learning journey. Don't miss a beat—sign up for notifications and be the first to unlock everything we have in store!  
+                    Notify me when it’s live!
+                    </p>
+                <button id="notify_us_btn">Notify me when live!</button>
+            </div>
+        </section>
+        
+
+
+        <section class="contact-section" id="contact-section">
+            <div class="contact-container" style="position: relative;"> <!-- Ensure the parent is positioned relatively -->
+                
+                <div class="circle_10"></div>
+                <div class="circle_11"></div>
+                <div class="circle_12"></div>
+                <div class="get-in-touch">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions, feedback, or just want to connect? We're all ears and ready to assist. Don’t hesitate to reach out—we’d love to hear from you!</p>
+                </div>
+                <div class="contact-details">
+                    <h3>Contact Details</h3>
+                    <ul>
+                        <li>Phone: <a href="tel:+91 7871505593">+91 78715 05593</a></li>
+                        <li>Email: <a href="mailto:platfwarehrm@gmail.com">platfwarehrm@gmail.com</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/platfware-info-tech-solutions/" target="_blank">Platfware LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        
+<!-- Footer Section -->
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/logo_1.png') }}" alt="LearniTOut Logo" class="logo-header">
+                <h2>LearniTOut</h2> <!-- Replace with your app name -->
+            </div>
+        </div>
+        <div class="footer-center">
+            <a href="https://facebook.com" target="_blank"><img src="{{ url_for('static', filename='images/facebook_icon.png') }}" alt="Facebook" /></a>
+            <a href="https://www.linkedin.com/company/platfware-info-tech-solutions/" target="_blank"><img src="{{ url_for('static', filename='images/linkedin_icon.png') }}" alt="LinkedIn" /></a>
+            <a href="https://instagram.com" target="_blank"><img src="{{ url_for('static', filename='images/instagram_icon.png') }}" alt="Instagram" /></a>
+            <a href="https://gmail.com" target="_blank"><img src="{{ url_for('static', filename='images/gmail_icon.png') }}" alt="Gmail" /></a>
+            <!-- Add more social media icons as needed -->
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
