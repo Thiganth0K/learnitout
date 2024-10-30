@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearniTOut - Survey</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_1.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f15b2a 40%, #ffcc70 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Loading Screen Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+        }
+
+        .loader {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            margin-bottom: 20px; /* Spacing below the loader */
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: #f15b2a;
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        .loading-text {
+            font-family: 'Roboto', sans-serif; /* Using the unique font */
+            font-size: 2.5rem; /* Larger font size for visibility */
+            font-weight: 700; /* Bold text */
+            color: #333; /* Dark color for contrast */
+            text-align: center; /* Centered text */
+            margin-top: 20px; /* Space above the text */
+            letter-spacing: 1px; /* Slight letter spacing for elegance */
+        }
+
+        /* Abstract background elements */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .circle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 6s;
+        }
+
+        .circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            right: 15%;
+            animation-duration: 8s;
+        }
+
+        .circle:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 70%;
+            animation-duration: 7s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            z-index: 1;
+            position: relative;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #f15b2a;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            margin-right: 15px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 14px;
+            background-color: #f15b2a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e04d1f;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="loading-text">Got a minute? We’d love to hear your feedback!</div> <!-- Enhanced Loading Text -->
+    </div>
+
+    <div class="loading-overlay" id="thankYouOverlay" style="display: none;">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="loading-text">Thank you for your feedback!</div> <!-- Thank You Text -->
+    </div>
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <div class="container" id="surveyContainer">
+        <h2>Survey Poll</h2>
+        <form id="survey-form" method="POST" action="{{ url_for('survey') }}">
+            <label for="reach">1. How did you reach our website?</label>
+            <div class="options">
+                <label><input type="radio" name="reach" value="Google Search" required> Google Search</label>
+                <label><input type="radio" name="reach" value="Social Media" required> Social Media</label>
+                <label><input type="radio" name="reach" value="Referral" required> Referral</label>
+                <label><input type="radio" name="reach" value="Other" required> Other</label>
+            </div>
+
+            <label for="reference">2. Did anyone refer you to our platform?</label>
+            <div class="options">
+                <label><input type="radio" name="reference" value="Yes" required> Yes</label>
+                <label><input type="radio" name="reference" value="No" required> No</label>
+            </div>
+
+            <label for="courses">3. What sort of guidance do you mostly need in your courses?</label>
+            <div class="options">
+                <label><input type="radio" name="courses" value="Project-Based Learning" required> Project-Based Learning</label>
+                <label><input type="radio" name="courses" value="Mentorship" required> Mentorship</label>
+                <label><input type="radio" name="courses" value="Peer Learning" required> Peer Learning</label>
+                <label><input type="radio" name="courses" value="Workshops and Seminars" required> Workshops and Seminars</label>
+            </div>
+
+            <label for="timing">4. How long can you stay concentrated on the classes?</label>
+            <div class="options">
+                <label><input type="radio" name="timing" value="15 - 30 mins" required> 15 - 30 mins</label>
+                <label><input type="radio" name="timing" value="30 - 60 mins" required> 30 - 60 mins</label>
+                <label><input type="radio" name="timing" value="More than 60 mins" required> More than 60 mins</label>
+            </div>
+
+            <label for="insights">5. Any insights for our application?</label>
+            <div class="options">
+                <textarea name="insights" rows="4" required placeholder="Type your insights here..."></textarea>
+            </div>
+
+            <button type="submit">Submit Survey</button>
+        </form>
+    </div>
+
+    <script>
+        // Show the survey container once the page has loaded
+        window.onload = function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const surveyContainer = document.getElementById('surveyContainer');
+
+            // Delay the loading overlay's fade-out effect
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0'; // Fade out loading overlay
+                loadingOverlay.style.visibility = 'hidden'; // Hide overlay after fade out
+                surveyContainer.style.opacity = '1'; // Show the survey container
+            }, 2000); // 2 seconds delay for loading screen
+        };
+    </script>
+
+</body>
+</html>

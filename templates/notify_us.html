@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notify Us</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_1.png') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif; /* Updated to Poppins */
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      width: 100vw;
+    }
+
+    .container {
+      background-color: white;
+      padding: 4rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      position: absolute;
+      left: 100px;
+      top: 180px;
+      height: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff3131;
+      font-weight: 600; /* Semi-bold for headings */
+    }
+
+    label {
+      margin: 10px 0 5px 0;
+      display: block;
+      font-weight: 500; /* Medium weight for labels */
+    }
+
+    input, button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif; /* Ensure inputs and buttons also use Poppins */
+      font-size: 16px; /* Consistent font size */
+    }
+
+    button {
+      background: linear-gradient(90deg, #ff3131, #ff914d);
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 25px;
+      width: 200px;
+      position: absolute;
+      left: 100px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #ff4500, #ffdd57);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .rect {
+      width: 150%;
+      height: 100px;
+      background: linear-gradient(90deg, #ff3131, #ff914d);
+      position: absolute;
+      z-index: 1;
+      opacity: 1.5;
+      top: 0.1px;
+      left: -20px;
+    }
+
+    .rect_1 {
+      width: 2%;
+      height: 90%;
+      background: linear-gradient(90deg, #ff3131, #ff914d);
+      position: absolute;
+      z-index: 1;
+      opacity: 1.5;
+      top: .1px;
+      left: 70px;
+    }
+
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #ff3131, #ff914d);
+      position: absolute;
+      opacity: 1.5;
+      top: 580px;
+      left: 580px;
+    }
+
+    .img_1 {
+      position: absolute;
+      top: 110px;
+      left: 60%;
+    }
+
+    .img_2 {
+      position: absolute;
+      top: 35%;
+      left: 70%;
+    }
+
+    /* In Animation for Rectangles */
+    @keyframes slideInRight {
+      from {
+        transform: translateX(-100%); /* Start off-screen from the left */
+        opacity: 0; /* Start fully transparent */
+      }
+      to {
+        transform: translateX(0); /* End at normal position */
+        opacity: 1; /* End fully visible */
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translateY(100%); /* Start off-screen from the bottom */
+        opacity: 0; /* Start fully transparent */
+      }
+      to {
+        transform: translateY(0); /* End at normal position */
+        opacity: 1; /* End fully visible */
+      }
+    }
+
+    /* Apply animations on page load */
+    .rect {
+      animation: slideInRight 1s ease-out 0.2s forwards;
+    }
+
+    .rect_1 {
+      animation: slideInRight 1s ease-out 0.2s forwards; /* Delay of 0.2s */
+    }
+
+    .circle {
+      animation: slideInUp 1s ease-out 0.2s forwards; /* Delay of 0.4s */
+    }
+
+    .img_1 {
+      animation: slideInRight 1s ease-out 0.2s forwards; /* Delay of 0.6s */
+    }
+
+    .img_2 {
+      animation: slideInUp 1s ease-out 0.2s forwards; /* Delay of 0.8s */
+    }
+
+    html, body {
+      overflow: hidden; /* Disable scrolling */
+      height: 100%;     /* Ensure the body takes full viewport height */
+    }
+  </style>
+</head>
+<body>
+    <div class="rect"></div>
+    <div class="rect_1"></div>
+    <div class="circle"></div>
+    <div class="img_1">
+      <img src="{{ url_for('static', filename='images/notify_us_img_1.png') }}" alt="design_element"> 
+    </div>
+    <div class="img_2">
+      <img src="{{ url_for('static', filename='images/notify_us_img_2.png') }}" alt="design_element"> 
+    </div>
+    <div class="container">
+        <section id="notify-section">
+            <h2>Be the first to know when we launch!</h2>
+            <form action="{{ url_for('notify_us') }}" method="POST">
+                <label for="email">Enter your email to get notified:</label>
+                <input type="email" id="email" name="email" required placeholder="Your email">
+                <label for="username">Enter your username:</label>
+                <input type="text" id="user-name" name="user-name" required placeholder="Your username">
+                <button type="submit">Notify Me</button>
+            </form>
+        </section>
+    </div>
+    
+</body>
+</html>
